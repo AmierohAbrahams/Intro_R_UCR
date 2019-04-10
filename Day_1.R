@@ -69,6 +69,36 @@ lam_miss <- laminaria %>% # Specify the dataset
   summarise(mean_sm = mean(stipe_mass, na.rm = TRUE)) # Mean of the stipe mass
 lam_miss
 
+# Calculate the standard error
+laminaria %>% # Select 'laminaria'
+  group_by(site) %>% # Group the dataframe by site
+  summarise(var_bl = var(blade_length), # Calculate variance
+            n_bl = n()) %>% # Count number of values
+  mutate(se_bl = sqrt(var_bl / n_bl)) # Calculate se
+
+# Visualisation
+
+# Plotting in R - ggplot
+# specify dataset, specify axis variables
+# ggplot: instead %>% use a +
+
+ggplot(data = laminaria, aes(x = stipe_mass, y = stipe_length)) +
+  geom_point(shape = 21, colour = "salmon", fill = "white") +
+  labs(x = "Stipe mass (kg)", y = "Stipe length (cm)")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
